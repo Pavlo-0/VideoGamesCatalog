@@ -9,7 +9,7 @@ Accept: application/json
 GET {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame/{{id}}
 Accept: application/json
 
-### Create a new video game
+### Add a new video game
 POST {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame
 Content-Type: application/json
 

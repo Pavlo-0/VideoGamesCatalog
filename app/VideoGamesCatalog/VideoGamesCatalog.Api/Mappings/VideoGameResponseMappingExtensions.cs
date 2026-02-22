@@ -3,7 +3,7 @@ using VideoGamesCatalog.Core.Models;
 
 namespace VideoGamesCatalog.Api.Extensions;
 
-public static class VideoGameMappingExtensions
+public static class VideoGameResponseMappingExtensions
 {
     extension(VideoGameDomain domain)
     {

@@ -15,6 +15,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCore();
 
+
+const string LocalhostCorsPolicy = "AllowLocalhost";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(LocalhostCorsPolicy, policy =>
+    {
+        policy.SetIsOriginAllowed(origin =>
+            Uri.TryCreate(origin, UriKind.Absolute, out var uri) && uri.IsLoopback)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
 builder.Services.AddDataAccess(connectionString);
@@ -34,6 +47,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ConcurrencyExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseCors(LocalhostCorsPolicy);
 
 app.UseAuthorization();
 

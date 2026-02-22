@@ -34,8 +34,8 @@ ILogger<VideoGameController> logger) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Guid>> CreateAsync(
-        [FromBody] CreateVideoGameRequest request)
+    public async Task<ActionResult<Guid>> AddAsync(
+        [FromBody] VideoGameAddRequest request)
     {
         var id = await videoGameService.AddAsync(request.ToVideoGameAddCommand());
 
@@ -45,7 +45,7 @@ ILogger<VideoGameController> logger) : ControllerBase
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> UpdateAsync(
         Guid id,
-        [FromBody] UpdateVideoGameRequest request)
+        [FromBody] VideoGameUpdateRequest request)
     {
         if (await videoGameService.UpdateAsync(request.ToVideoGameUpdateCommand(id)))
             return NoContent();

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace VideoGamesCatalog.Api.Models;
 
-public record VideoGameResponse(Guid Id, string Title, string? Description, byte[] RowVersion);
+public record VideoGameResponse([Required] Guid Id, [Required] string Title, string? Description, [Required] byte[] RowVersion);

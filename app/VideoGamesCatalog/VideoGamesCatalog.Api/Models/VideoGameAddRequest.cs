@@ -2,7 +2,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace VideoGamesCatalog.Api.Models;
 
-public record UpdateVideoGameRequest(
+public record VideoGameAddRequest(
     [Required, MaxLength(200)] string Title,
-    [MaxLength(2000)] string? Description,
-    [Required] byte[] RowVersion);
+    [MaxLength(2000)] string? Description);

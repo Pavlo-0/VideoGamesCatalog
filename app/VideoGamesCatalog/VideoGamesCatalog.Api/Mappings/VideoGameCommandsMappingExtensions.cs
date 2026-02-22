@@ -3,9 +3,9 @@ using VideoGamesCatalog.Core.Commands.VideoGame;
 
 namespace VideoGamesCatalog.Api.Extensions;
 
-public static class CreateVideoGameCommandsRequestMappingExtensions
+public static class VideoGameCommandsMappingExtensions
 {
-    extension(CreateVideoGameRequest request)
+    extension(VideoGameAddRequest request)
     {
         public VideoGameAddCommand ToVideoGameAddCommand()
         {
@@ -13,7 +13,7 @@ public static class CreateVideoGameCommandsRequestMappingExtensions
         }
     }
 
-    extension(UpdateVideoGameRequest request)
+    extension(VideoGameUpdateRequest request)
     {
         public VideoGameUpdateCommand ToVideoGameUpdateCommand(Guid id)
         {
