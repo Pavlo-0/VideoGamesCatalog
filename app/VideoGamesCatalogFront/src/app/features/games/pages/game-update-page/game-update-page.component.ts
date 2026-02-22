@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
@@ -31,33 +31,7 @@ interface SaveState {
   selector: 'app-game-update-page',
   standalone: true,
   imports: [GameFormComponent, LoadingSpinnerComponent],
-  template: `
-    <div class="container py-4">
-      <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
-          <h1 class="mb-4">
-            {{ mode() === 'add' ? 'Add New Game' : 'Update Game' }}
-          </h1>
-
-          @if (loading()) {
-            <app-loading-spinner />
-          } @else if (error()) {
-            <div class="alert alert-danger" role="alert">
-              {{ error() }}
-            </div>
-          } @else {
-            <app-game-form
-              [initialData]="game()"
-              [mode]="mode()"
-              [saving]="loading()"
-              (save)="onSave($event)"
-              (cancel)="onCancel()"
-            />
-          }
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './game-update-page.component.html',
 })
 export class GameUpdatePageComponent {
   private route = inject(ActivatedRoute);

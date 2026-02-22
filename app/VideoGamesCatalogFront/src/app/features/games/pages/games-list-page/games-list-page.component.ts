@@ -32,27 +32,7 @@ interface DeleteState {
   selector: 'app-games-list-page',
   standalone: true,
   imports: [GamesTableComponent],
-  template: `
-    <div class="container py-4">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Video Games Catalog {{ games().length }}</h1>
-        <button class="btn btn-primary" (click)="onAdd()">Add Game</button>
-      </div>
-
-      @if (error()) {
-        <div class="alert alert-danger" role="alert">
-          {{ error() }}
-        </div>
-      }
-
-      <app-games-table
-        [games]="games()"
-        [loading]="loading()"
-        (update)="onUpdate($event)"
-        (delete)="onDelete($event)"
-      />
-    </div>
-  `,
+  templateUrl: './games-list-page.component.html',
 })
 export class GamesListPageComponent {
   private gamesService = inject(GamesService);
