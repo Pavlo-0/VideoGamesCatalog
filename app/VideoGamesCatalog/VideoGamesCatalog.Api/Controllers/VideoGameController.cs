@@ -24,12 +24,12 @@ public class VideoGameDetailController(
     }
 
     [HttpPost]
-    public async Task<ActionResult<VideoGameResponse>> CreateAsync(
+    public async Task<ActionResult<Guid>> CreateAsync(
         [FromBody] CreateVideoGameRequest request)
     {
         var id = await videoGameService.AddAsync(request.ToVideoGameAddCommand());
 
-        return CreatedAtAction(nameof(GetByIdAsync), new { id });
+        return id;
     }
 
     [HttpPut("{id:guid}")]

@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using VideoGamesCatalog.DataAccess.Persistence;
 using VideoGamesCatalog.Core;
 using VideoGamesCatalog.DataAccess;
 
@@ -17,6 +20,12 @@ builder.Services.AddDataAccess(builder.Configuration.GetConnectionString("Defaul
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<VideoGamesCatalogDbContext>();
+    dbContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -32,3 +41,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
