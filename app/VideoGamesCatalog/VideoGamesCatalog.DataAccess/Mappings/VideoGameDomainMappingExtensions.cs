@@ -3,7 +3,7 @@ using VideoGamesCatalog.DomainModel;
 
 namespace VideoGamesCatalog.DataAccess.ModelConvertors;
 
-internal static class VideoGameEntityMappingExtensions
+internal static class VideoGameDomainMappingExtensions
 {
     public static VideoGameEntity ToVideoGameEntity(this VideoGameDomain videoGameDomain)
     {
@@ -11,12 +11,7 @@ internal static class VideoGameEntityMappingExtensions
         {
             Id = videoGameDomain.Id,
             Title = videoGameDomain.Title,
-            Description = videoGameDomain.Description,
-            Genres = videoGameDomain.Genres.Select(genre => new GenreEntity
-            {
-                Id = genre.Id.GetValueOrDefault(),
-                Name = genre.Name
-            }).ToList()
+            Description = videoGameDomain.Description
         };
     }
 }

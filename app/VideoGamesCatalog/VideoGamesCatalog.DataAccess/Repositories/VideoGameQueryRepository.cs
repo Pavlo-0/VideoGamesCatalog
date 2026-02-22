@@ -19,12 +19,7 @@ internal sealed class VideoGameQueryRepository(VideoGamesCatalogDbContext dbCont
             {
                 Id = videoGame.Id,
                 Title = videoGame.Title,
-                Description = videoGame.Description,
-                Genres = videoGame.Genres.Select(genre => new VideoGameGenreProjection
-                {
-                    Id = genre.Id,
-                    Name = genre.Name
-                })
+                Description = videoGame.Description
             })
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -39,14 +34,9 @@ internal sealed class VideoGameQueryRepository(VideoGamesCatalogDbContext dbCont
             {
                 Id = videoGame.Id,
                 Title = videoGame.Title,
-                Description = videoGame.Description,
-                Genres = videoGame.Genres.Select(genre => new VideoGameGenreProjection
-                {
-                    Id = genre.Id,
-                    Name = genre.Name
-                })
+                Description = videoGame.Description
             }).ToListAsync(cancellationToken);
 
-        return entities.ToVideoGameDomain();
+        return entities.ToVideoGameDomains();
     }
 }

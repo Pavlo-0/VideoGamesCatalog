@@ -1,5 +1,5 @@
 <Solution>
   <Project Path="VideoGamesCatalog.Api/VideoGamesCatalog.Api.csproj" />
+  <Project Path="VideoGamesCatalog.Core/VideoGamesCatalog.Core.csproj" Id="efcee9b1-cc73-4ea9-b1be-9ff1caf8fcb3" />
   <Project Path="VideoGamesCatalog.DataAccess/VideoGamesCatalog.DataAccess.csproj" />
-  <Project Path="VideoGamesCatalog.DomainModel/VideoGamesCatalog.DomainModel.csproj" Id="a45db724-6e80-4865-9415-b98ff5badb8d" />
 </Solution>

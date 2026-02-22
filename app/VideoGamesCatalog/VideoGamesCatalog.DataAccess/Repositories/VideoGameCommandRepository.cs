@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using VideoGamesCatalog.Core.Specification;
 using VideoGamesCatalog.DataAccess.ModelConvertors;
 using VideoGamesCatalog.DataAccess.Persistence;
 using VideoGamesCatalog.DataAccess.Repositories.Interfaces;
@@ -9,26 +10,24 @@ namespace VideoGamesCatalog.DataAccess.Repositories;
 internal sealed class VideoGameCommandRepository(VideoGamesCatalogDbContext dbContext)
     : IVideoGameCommandRepository
 {
-    public async Task AddAsync(VideoGameDomain videoGameDomain)
+    public async Task<Guid> AddAsync(VideoGameAddSpecification specification)
     {
-        var entity = videoGameDomain.ToVideoGameEntity();
+        var entity = specification.ToVideoGameEntity();
         await dbContext.VideoGames.AddAsync(entity);
+        await dbContext.SaveChangesAsync();
+
+        return entity.Id;
     }
 
-    public void Update(VideoGameDomain videoGameDomain)
+    public async Task UpdateAsync(VideoGameDomain videoGameDomain)
     {
         var entity = videoGameDomain.ToVideoGameEntity();
         dbContext.VideoGames.Update(entity);
+        await dbContext.SaveChangesAsync();
     }
 
-    public void Remove(VideoGameDomain videoGameDomain)
+    public async Task RemoveAsync(Guid id)
     {
-        var entity = videoGameDomain.ToVideoGameEntity();
-        dbContext.VideoGames.Remove(entity);
-    }
-
-    public void Remove(Guid id)
-    {
-        dbContext.VideoGames.Where(x => x.Id == id).ExecuteDeleteAsync();
+         await dbContext.VideoGames.Where(x => x.Id == id).ExecuteDeleteAsync();
     }
 }

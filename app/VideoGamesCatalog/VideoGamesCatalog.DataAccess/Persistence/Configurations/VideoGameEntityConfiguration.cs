@@ -19,8 +19,5 @@ internal sealed class VideoGameEntityConfiguration : IEntityTypeConfiguration<Vi
 
         entityTypeBuilder.Property(videoGame => videoGame.Description)
             .HasMaxLength(2000);
-
-        entityTypeBuilder.HasMany(videoGame => videoGame.Genres)
-            .WithMany(genre => genre.VideoGames);
     }
 }
