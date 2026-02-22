@@ -1,6 +1,32 @@
 @VideoGamesCatalogApi_HostAddress = http://localhost:5021
+@id = 00000000-0000-0000-0000-000000000000
 
-GET {{VideoGamesCatalogApi_HostAddress}}/weatherforecast/
+### Get all video games
+GET {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame
 Accept: application/json
 
-###
+### Get video game by id
+GET {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame/{{id}}
+Accept: application/json
+
+### Create a new video game
+POST {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame
+Content-Type: application/json
+
+{
+  "title": "New Game",
+  "description": "A great new video game"
+}
+
+### Update an existing video game
+PUT {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame/395fd266-b80f-f111-b14b-e848b8c82000
+Content-Type: application/json
+
+{
+  "title": "Updated Game",
+  "description": "Updated description",
+  "rowVersion": "AAAAAAAAJxE="
+}
+
+### Delete a video game
+DELETE {{VideoGamesCatalogApi_HostAddress}}/api/VideoGame/{{id}}
