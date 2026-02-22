@@ -1,5 +1,4 @@
-using VideoGamesCatalog.Api.Models;
-using VideoGamesCatalog.DomainModel;
+using VideoGamesCatalog.Core.Models;
 
 namespace VideoGamesCatalog.Api.Extensions;
 
@@ -9,12 +8,7 @@ public static class VideoGameMappingExtensions
     {
         public VideoGameResponse ToVideoGameResponse()
         {
-            return new VideoGameResponse
-            {
-                Id = domain.Id,
-                Title = domain.Title,
-                Description = domain.Description
-            };
+            return new VideoGameResponse(domain.Id, domain.Title, domain.Description);
         }
     }
 }

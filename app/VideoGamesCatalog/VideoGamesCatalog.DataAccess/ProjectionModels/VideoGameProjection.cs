@@ -1,9 +1,9 @@
-﻿namespace VideoGamesCatalog.DataAccess.ProjectionModels
+﻿namespace VideoGamesCatalog.DataAccess.ProjectionModels;
+
+internal class VideoGameProjection
 {
-    internal class VideoGameProjection
-    {
-        public Guid Id { get; set; }
-        public required string Title { get; set; }
-        public string? Description { get; set; }
-    }
+    public Guid Id { get; set; }
+    public required string Title { get; set; }
+    public string? Description { get; set; }
+    public byte[] RowVersion { get; set; } = [];
 }

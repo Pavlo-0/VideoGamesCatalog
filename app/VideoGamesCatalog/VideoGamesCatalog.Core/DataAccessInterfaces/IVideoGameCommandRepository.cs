@@ -1,8 +1,7 @@
-using VideoGamesCatalog.Core.Commands.VideoGame;
+using VideoGamesCatalog.Core.Models;
 using VideoGamesCatalog.Core.Specification;
-using VideoGamesCatalog.DomainModel;
 
-namespace VideoGamesCatalog.DataAccess.Repositories.Interfaces;
+namespace VideoGamesCatalog.Core.DataAccessInterfaces;
 
 public interface IVideoGameCommandRepository
 {

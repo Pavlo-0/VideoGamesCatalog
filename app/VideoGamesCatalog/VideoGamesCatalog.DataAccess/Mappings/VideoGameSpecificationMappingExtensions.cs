@@ -1,7 +1,7 @@
 using VideoGamesCatalog.Core.Specification;
-using VideoGamesCatalog.DataAccess.Models;
+using VideoGamesCatalog.DataAccess.EntityModels;
 
-namespace VideoGamesCatalog.DataAccess.ModelConvertors;
+namespace VideoGamesCatalog.DataAccess.Mappings;
 
 internal static class VideoGameSpecificationMappingExtensions
 {

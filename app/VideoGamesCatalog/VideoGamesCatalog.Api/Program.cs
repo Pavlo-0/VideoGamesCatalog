@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using VideoGamesCatalog.DataAccess.Persistence;
+using VideoGamesCatalog.Api.Middleware;
 using VideoGamesCatalog.Core;
 using VideoGamesCatalog.DataAccess;
 
@@ -16,15 +14,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCore();
-builder.Services.AddDataAccess(builder.Configuration.GetConnectionString("DefaultConnection")!);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' is not configured.");
+builder.Services.AddDataAccess(connectionString);
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<VideoGamesCatalogDbContext>();
-    dbContext.Database.Migrate();
-}
+app.Services.ApplyMigrations();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -33,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ConcurrencyExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using VideoGamesCatalog.DataAccess.Models;
+using VideoGamesCatalog.DataAccess.EntityModels;
 
 namespace VideoGamesCatalog.DataAccess.Persistence.Configurations;
 
@@ -19,5 +19,8 @@ internal sealed class VideoGameEntityConfiguration : IEntityTypeConfiguration<Vi
 
         entityTypeBuilder.Property(videoGame => videoGame.Description)
             .HasMaxLength(2000);
+
+        entityTypeBuilder.Property(videoGame => videoGame.RowVersion)
+            .IsRowVersion();
     }
 }

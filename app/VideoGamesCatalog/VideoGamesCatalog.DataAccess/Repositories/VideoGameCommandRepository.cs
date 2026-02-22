@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using VideoGamesCatalog.Core.DataAccessInterfaces;
+using VideoGamesCatalog.Core.Models;
 using VideoGamesCatalog.Core.Specification;
-using VideoGamesCatalog.DataAccess.ModelConvertors;
+using VideoGamesCatalog.DataAccess.Mappings;
 using VideoGamesCatalog.DataAccess.Persistence;
-using VideoGamesCatalog.DataAccess.Repositories.Interfaces;
-using VideoGamesCatalog.DomainModel;
 
 namespace VideoGamesCatalog.DataAccess.Repositories;
 
@@ -13,7 +13,7 @@ internal sealed class VideoGameCommandRepository(VideoGamesCatalogDbContext dbCo
     public async Task<Guid> AddAsync(VideoGameAddSpecification specification)
     {
         var entity = specification.ToVideoGameEntity();
-        await dbContext.VideoGames.AddAsync(entity);
+        dbContext.VideoGames.Add(entity);
         await dbContext.SaveChangesAsync();
 
         return entity.Id;

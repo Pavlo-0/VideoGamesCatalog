@@ -1,4 +1,3 @@
-﻿namespace VideoGamesCatalog.Core.Commands.VideoGame
-{
-    public record VideoGameAddCommand(string Title, string? Description);
-}
+﻿namespace VideoGamesCatalog.Core.Commands.VideoGame;
+
+public record VideoGameAddCommand(string Title, string? Description);

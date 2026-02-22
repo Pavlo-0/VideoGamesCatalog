@@ -1,4 +1,3 @@
-﻿namespace VideoGamesCatalog.Core.Commands.VideoGame
-{
-    public record VideoGameUpdateCommand(Guid Id, string Title, string? Description);
-}
+﻿namespace VideoGamesCatalog.Core.Commands.VideoGame;
+
+public record VideoGameUpdateCommand(Guid Id, string Title, string? Description);

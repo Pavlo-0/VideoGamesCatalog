@@ -1,7 +1,7 @@
-using VideoGamesCatalog.DataAccess.Models;
-using VideoGamesCatalog.DomainModel;
+using VideoGamesCatalog.Core.Models;
+using VideoGamesCatalog.DataAccess.EntityModels;
 
-namespace VideoGamesCatalog.DataAccess.ModelConvertors;
+namespace VideoGamesCatalog.DataAccess.Mappings;
 
 internal static class VideoGameDomainMappingExtensions
 {
@@ -11,7 +11,8 @@ internal static class VideoGameDomainMappingExtensions
         {
             Id = videoGameDomain.Id,
             Title = videoGameDomain.Title,
-            Description = videoGameDomain.Description
+            Description = videoGameDomain.Description,
+            RowVersion = videoGameDomain.RowVersion
         };
     }
 }

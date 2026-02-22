@@ -1,7 +1,7 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace VideoGamesCatalog.Api.Models;
 
-public class CreateVideoGameRequest
-{
-    public required string Title { get; set; }
-    public string? Description { get; set; }
-}
+public record CreateVideoGameRequest(
+    [property: Required, MaxLength(200)] string Title,
+    [property: MaxLength(2000)] string? Description);

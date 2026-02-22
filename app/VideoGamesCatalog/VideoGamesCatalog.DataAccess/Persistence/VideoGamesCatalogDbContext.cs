@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using VideoGamesCatalog.DataAccess.Models;
+using VideoGamesCatalog.DataAccess.EntityModels;
 
 namespace VideoGamesCatalog.DataAccess.Persistence;
 
-public class VideoGamesCatalogDbContext(DbContextOptions<VideoGamesCatalogDbContext> options)
+internal class VideoGamesCatalogDbContext(DbContextOptions<VideoGamesCatalogDbContext> options)
     : DbContext(options)
 {
     public DbSet<VideoGameEntity> VideoGames => Set<VideoGameEntity>();

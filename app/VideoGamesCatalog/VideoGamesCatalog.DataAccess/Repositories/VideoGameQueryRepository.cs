@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using VideoGamesCatalog.DataAccess.ModelConvertors;
+using VideoGamesCatalog.Core.DataAccessInterfaces;
+using VideoGamesCatalog.Core.Models;
+using VideoGamesCatalog.DataAccess.Mappings;
 using VideoGamesCatalog.DataAccess.Persistence;
 using VideoGamesCatalog.DataAccess.ProjectionModels;
-using VideoGamesCatalog.DataAccess.Repositories.Interfaces;
-using VideoGamesCatalog.DomainModel;
 
 namespace VideoGamesCatalog.DataAccess.Repositories;
 
@@ -19,7 +19,8 @@ internal sealed class VideoGameQueryRepository(VideoGamesCatalogDbContext dbCont
             {
                 Id = videoGame.Id,
                 Title = videoGame.Title,
-                Description = videoGame.Description
+                Description = videoGame.Description,
+                RowVersion = videoGame.RowVersion
             })
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -34,7 +35,8 @@ internal sealed class VideoGameQueryRepository(VideoGamesCatalogDbContext dbCont
             {
                 Id = videoGame.Id,
                 Title = videoGame.Title,
-                Description = videoGame.Description
+                Description = videoGame.Description,
+                RowVersion = videoGame.RowVersion
             }).ToListAsync(cancellationToken);
 
         return entities.ToVideoGameDomains();

@@ -1,21 +1,21 @@
-﻿using VideoGamesCatalog.DataAccess.ProjectionModels;
-using VideoGamesCatalog.DomainModel;
+﻿using VideoGamesCatalog.Core.Models;
+using VideoGamesCatalog.DataAccess.ProjectionModels;
 
-namespace VideoGamesCatalog.DataAccess.ModelConvertors
+namespace VideoGamesCatalog.DataAccess.Mappings;
+
+internal static class VideoGameProjectionMappingExtension
 {
-    internal static class VideoGameProjectionMappingExtension
+    public static IEnumerable<VideoGameDomain> ToVideoGameDomains(this IEnumerable<VideoGameProjection> videoGameProjections)
     {
-        public static IEnumerable<VideoGameDomain> ToVideoGameDomains(this IEnumerable<VideoGameProjection> videoGameProjections)
-        {
-            return videoGameProjections.Select(videoGame => videoGame.ToVideoGameDomain());
-        }
+        return videoGameProjections.Select(videoGame => videoGame.ToVideoGameDomain());
+    }
 
-        public static VideoGameDomain ToVideoGameDomain(this VideoGameProjection videoGameProjection)
-        {
-            return new VideoGameDomain(
-                videoGameProjection.Id,
-                videoGameProjection.Title,
-                videoGameProjection.Description);
-        }
+    public static VideoGameDomain ToVideoGameDomain(this VideoGameProjection videoGameProjection)
+    {
+        return new VideoGameDomain(
+            videoGameProjection.Id,
+            videoGameProjection.Title,
+            videoGameProjection.Description,
+            videoGameProjection.RowVersion);
     }
 }

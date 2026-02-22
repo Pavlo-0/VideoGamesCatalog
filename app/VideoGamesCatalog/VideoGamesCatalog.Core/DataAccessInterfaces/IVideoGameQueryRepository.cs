@@ -1,6 +1,6 @@
-using VideoGamesCatalog.DomainModel;
+using VideoGamesCatalog.Core.Models;
 
-namespace VideoGamesCatalog.DataAccess.Repositories.Interfaces;
+namespace VideoGamesCatalog.Core.DataAccessInterfaces;
 
 public interface IVideoGameQueryRepository
 {

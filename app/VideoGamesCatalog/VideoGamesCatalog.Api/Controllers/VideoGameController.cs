@@ -3,13 +3,22 @@ using VideoGamesCatalog.Api.Extensions;
 using VideoGamesCatalog.Api.Models;
 using VideoGamesCatalog.Core.Services.Interfaces;
 
-namespace VideoGamesCatalogApi.Controllers;
+namespace VideoGamesCatalog.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class VideoGameDetailController(
-    IVideoGameService videoGameService) : ControllerBase
+public class VideoGameController(
+IVideoGameService videoGameService,
+ILogger<VideoGameController> logger) : ControllerBase
 {
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<VideoGameResponse>>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        var videoGames = await videoGameService.GetAllAsync(cancellationToken);
+
+        return Ok(videoGames.Select(videoGame => videoGame.ToVideoGameResponse()));
+    }
+
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<VideoGameResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
@@ -17,6 +26,7 @@ public class VideoGameDetailController(
 
         if (videoGame is null)
         {
+            logger.LogWarning("Game not found: {Id}", id);
             return NotFound();
         }
 
@@ -37,16 +47,10 @@ public class VideoGameDetailController(
         Guid id,
         [FromBody] UpdateVideoGameRequest request)
     {
-        try
-        {
-            await videoGameService.UpdateAsync(request.ToVideoGameUpdateCommand(id));
-        }
-        catch (InvalidOperationException)
-        {
+        if (await videoGameService.UpdateAsync(request.ToVideoGameUpdateCommand(id)))
+            return NoContent();
+        else
             return NotFound();
-        }
-
-        return NoContent();
     }
 
     [HttpDelete("{id:guid}")]

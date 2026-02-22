@@ -1,5 +1,5 @@
 using VideoGamesCatalog.Core.Commands.VideoGame;
-using VideoGamesCatalog.DomainModel;
+using VideoGamesCatalog.Core.Models;
 
 namespace VideoGamesCatalog.Core.Services.Interfaces;
 
