@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, inject, input, output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -23,23 +16,23 @@ import { GameModel, GameFormValue } from '../../data-access/game.model';
 export class GameFormComponent implements OnInit {
   private fb = inject(FormBuilder);
 
-  @Input() initialData: GameModel | null = null;
-  @Input() mode: 'add' | 'update' = 'add';
-  @Input() saving = false;
+  initialData = input<GameModel | null>(null);
+  isAdd = input(true);
+  saving = input(false);
 
-  @Output() save = new EventEmitter<GameFormValue>();
-  @Output() cancel = new EventEmitter<void>();
+  save = output<GameFormValue>();
+  cancel = output<void>();
 
   form!: FormGroup;
 
   ngOnInit(): void {
     this.form = this.fb.group({
       title: [
-        this.initialData?.title ?? '',
+        this.initialData()?.title ?? '',
         [Validators.required, Validators.maxLength(200)],
       ],
       description: [
-        this.initialData?.description ?? '',
+        this.initialData()?.description ?? '',
         [Validators.maxLength(2000)],
       ],
     });

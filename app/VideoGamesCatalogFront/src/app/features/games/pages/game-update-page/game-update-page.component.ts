@@ -38,15 +38,16 @@ export class GameUpdatePageComponent {
   private router = inject(Router);
   private gamesService = inject(GamesService);
 
+  private id = this.route.snapshot.paramMap.get('id');
+  public isAdd = !this.id;
+
   private gameState = toSignal(
     (() => {
-      const id = this.route.snapshot.paramMap.get('id');
-
-      if (!id) {
+      if (this.isAdd) {
         return of({ data: null, loading: false, error: null } as GameState);
       }
 
-      return this.gamesService.getById(id).pipe(
+      return this.gamesService.getById(this.id!).pipe(
         map(
           (game) => ({ data: game, loading: false, error: null }) as GameState,
         ),
@@ -68,8 +69,7 @@ export class GameUpdatePageComponent {
   private saveEffect = toSignal(
     this.saveAction$.pipe(
       concatMap((formValue) => {
-        const isAdd = this.mode() === 'add';
-        const operation$: Observable<void> = isAdd
+        const operation$: Observable<void> = this.isAdd
           ? this.gamesService.add(formValue).pipe(map(() => void 0))
           : this.gamesService
               .update(
@@ -95,9 +95,6 @@ export class GameUpdatePageComponent {
     { initialValue: { loading: false, error: null } as SaveState },
   );
 
-  mode = computed(
-    () => (this.gameState().data?.id ? 'update' : 'add') as 'add' | 'update',
-  );
   game = computed(() => this.gameState().data);
   loading = computed(
     () => this.gameState().loading || this.saveEffect().loading,

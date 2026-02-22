@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
             <h1 class="mb-4">
-                {{ mode() === 'add' ? 'Add New Game' : 'Update Game' }}
+                {{ this.isAdd ? 'Add New Game' : 'Update Game' }}
             </h1>
 
             @if (loading()) {
@@ -12,7 +12,7 @@
                 {{ error() }}
             </div>
             } @else {
-            <app-game-form [initialData]="game()" [mode]="mode()" [saving]="loading()" (save)="onSave($event)"
+            <app-game-form [initialData]="game()" [isAdd]="this.isAdd" [saving]="loading()" (save)="onSave($event)"
                 (cancel)="onCancel()" />
             }
         </div>
