@@ -17,7 +17,7 @@ public static class CreateVideoGameCommandsRequestMappingExtensions
     {
         public VideoGameUpdateCommand ToVideoGameUpdateCommand(Guid id)
         {
-            return new VideoGameUpdateCommand(id, request.Title, request.Description);
+            return new VideoGameUpdateCommand(id, request.Title, request.Description, request.RowVersion);
         }
     }
 

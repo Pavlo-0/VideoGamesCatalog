@@ -10,10 +10,11 @@ public class VideoGameDomain
         RowVersion = rowVersion;
     }
 
-    public void Update(string title, string? description)
+    public void Update(string title, string? description, byte[] rowVersion)
     {
         Title = title;
         Description = description;
+        RowVersion = rowVersion;
     }
 
     public Guid Id { get; private set; }

@@ -30,7 +30,7 @@ internal sealed class VideoGameService(
             return false;
         }
 
-        domainModel.Update(command.Title, command.Description);
+        domainModel.Update(command.Title, command.Description, command.RowVersion);
 
         await videoGameCommandRepository.UpdateAsync(domainModel);
         logger.LogInformation("Game updated: {Id}", command.Id);

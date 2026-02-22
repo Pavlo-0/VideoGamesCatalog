@@ -1,3 +1,3 @@
 namespace VideoGamesCatalog.Api.Models;
 
-public record VideoGameResponse(Guid Id, string Title, string? Description);
+public record VideoGameResponse(Guid Id, string Title, string? Description, byte[] RowVersion);

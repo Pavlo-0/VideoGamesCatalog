@@ -9,7 +9,7 @@ public static class VideoGameMappingExtensions
     {
         public VideoGameResponse ToVideoGameResponse()
         {
-            return new VideoGameResponse(domain.Id, domain.Title, domain.Description);
+            return new VideoGameResponse(domain.Id, domain.Title, domain.Description, domain.RowVersion);
         }
     }
 }
