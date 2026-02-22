@@ -1,3 +1,4 @@
+using VideoGamesCatalog.Api.Models;
 using VideoGamesCatalog.Core.Models;
 
 namespace VideoGamesCatalog.Api.Extensions;
