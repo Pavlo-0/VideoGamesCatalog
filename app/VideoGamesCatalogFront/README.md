@@ -1,13 +1,3 @@
-# Video Games Catalog
-
-A simple Angular application for managing a video games catalog with CRUD operations.
-
-## Prerequisites
-
-- Node.js 20+
-- Angular CLI 17+
-- API server running at `https://localhost:7059`
-
 ## Installation
 
 ```bash
