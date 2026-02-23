@@ -32,6 +32,14 @@ npm run build
 
 Build artifacts are stored in `dist/`.
 
+## Testing
+
+Run the unit test suite in headless Chrome without watch mode:
+
+```bash
+npm test -- --no-watch --browsers=ChromeHeadless
+```
+
 ## Regenerate API Client
 
 To regenerate the TypeScript API client from Swagger:
