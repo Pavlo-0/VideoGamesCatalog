@@ -40,6 +40,10 @@ Run the unit test suite in headless Chrome without watch mode:
 npm test -- --no-watch --browsers=ChromeHeadless
 ```
 
+```bash
+npm test -- --no-watch --browsers=ChromeHeadlessNoSandbox
+```
+
 ## Regenerate API Client
 
 To regenerate the TypeScript API client from Swagger:
