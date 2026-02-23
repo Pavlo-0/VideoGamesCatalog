@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/UnitTests/">
+    <Project Path="VideoGamesCatalog.Api.UnitTests/VideoGamesCatalog.Api.UnitTests.csproj" Id="c7950eee-ff4b-4456-b57a-b0f48442f6df" />
+    <Project Path="VideoGamesCatalog.Core.UnitTests/VideoGamesCatalog.Core.UnitTests.csproj" Id="63b421fe-9f02-4187-995c-9272e830217f" />
+    <Project Path="VideoGamesCatalog.DataAccess.UnitTests/VideoGamesCatalog.DataAccess.UnitTests.csproj" Id="5d700429-32b3-474d-8a05-8d35887c8a11" />
+  </Folder>
   <Project Path="VideoGamesCatalog.Api/VideoGamesCatalog.Api.csproj" />
   <Project Path="VideoGamesCatalog.Core/VideoGamesCatalog.Core.csproj" Id="efcee9b1-cc73-4ea9-b1be-9ff1caf8fcb3" />
   <Project Path="VideoGamesCatalog.DataAccess/VideoGamesCatalog.DataAccess.csproj" />

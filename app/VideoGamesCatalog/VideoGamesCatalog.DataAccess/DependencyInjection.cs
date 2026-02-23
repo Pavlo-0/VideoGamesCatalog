@@ -17,6 +17,9 @@ public static class DependencyInjection
         services.AddDbContext<VideoGamesCatalogDbContext>(options =>
             options.UseSqlServer(connectionString));
 
+        services.AddScoped<IVideoGamesCatalogDbContext>(sp =>
+            sp.GetRequiredService<VideoGamesCatalogDbContext>());
+
         services.AddScoped<IVideoGameQueryRepository, VideoGameQueryRepository>();
         services.AddScoped<IVideoGameCommandRepository, VideoGameCommandRepository>();
 

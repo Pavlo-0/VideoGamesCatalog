@@ -7,8 +7,8 @@ using VideoGamesCatalog.DataAccess.Persistence;
 
 namespace VideoGamesCatalog.DataAccess.Repositories;
 
-internal sealed class VideoGameCommandRepository(VideoGamesCatalogDbContext dbContext)
-    : IVideoGameCommandRepository
+internal sealed class VideoGameCommandRepository(IVideoGamesCatalogDbContext dbContext)
+: IVideoGameCommandRepository
 {
     public async Task<Guid> AddAsync(VideoGameAddSpecification specification)
     {

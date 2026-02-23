@@ -7,8 +7,8 @@ using VideoGamesCatalog.DataAccess.ProjectionModels;
 
 namespace VideoGamesCatalog.DataAccess.Repositories;
 
-internal sealed class VideoGameQueryRepository(VideoGamesCatalogDbContext dbContext)
-    : IVideoGameQueryRepository
+internal sealed class VideoGameQueryRepository(IVideoGamesCatalogDbContext dbContext)
+: IVideoGameQueryRepository
 {
     public async Task<VideoGameDomain?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
